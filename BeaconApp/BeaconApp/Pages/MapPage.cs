@@ -4,6 +4,8 @@ using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
 
+using Plugin.Geolocator;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 

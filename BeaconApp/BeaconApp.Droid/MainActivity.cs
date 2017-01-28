@@ -11,9 +11,13 @@ using Android.Support.V4.App;
 using Android;
 using Android.Gms.Common;
 
+using Plugin.Geolocator;
+using Plugin.Geolocator.Abstractions;
+using System.Threading.Tasks;
+
 namespace BeaconApp.Droid
 {
-    [Activity(Label = "BeaconApp.Droid", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "Beacon", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
         const int RequestAccessFineLocation = 1;
@@ -63,10 +67,11 @@ namespace BeaconApp.Droid
             return wasInitialized && base.OnPrepareOptionsMenu(menu);
         }
 
-        private void InitApp()
+        private async void InitApp()
         {
             if (IsGooglePlayServicesInstalled())
             {
+                Position position = await GetLocation();
                 LoadApplication(new App());
             }
             else
@@ -80,6 +85,15 @@ namespace BeaconApp.Droid
             var googleApiAvailability = GoogleApiAvailability.Instance;
             var status = googleApiAvailability.IsGooglePlayServicesAvailable(this);
             return status == ConnectionResult.Success;
+        }
+
+        private async Task<Position> GetLocation()
+        {
+            var locator = CrossGeolocator.Current;
+            locator.DesiredAccuracy = 100; //100 is new default
+            var position = await locator.GetPositionAsync(timeoutMilliseconds: 10000);
+
+            return position;
         }
     }
 }
