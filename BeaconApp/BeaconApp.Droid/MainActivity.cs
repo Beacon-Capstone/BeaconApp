@@ -20,8 +20,8 @@ namespace BeaconApp.Droid
     [Activity(Label = "Beacon", Icon = "@drawable/icon", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity
     {
-        const int RequestAccessFineLocation = 1;
-        bool wasInitialized = false;
+        private static int RequestAccessFineLocation = 1;
+        private bool wasInitialized = false;
 
         protected override void OnCreate(Bundle bundle)
         {
