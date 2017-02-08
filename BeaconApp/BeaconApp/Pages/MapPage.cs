@@ -15,7 +15,7 @@ namespace BeaconApp.Pages
         {
             var map = new Map(
                 MapSpan.FromCenterAndRadius(
-                        new Position(37, -122), Distance.FromMiles(0.3)))
+                        new Position(38.946047, -92.330131), Distance.FromMiles(0.3)))
             {
                 IsShowingUser = true,
                 HeightRequest = 100,
