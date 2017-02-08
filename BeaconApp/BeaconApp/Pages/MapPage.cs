@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-
+﻿using Plugin.Geolocator;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
 
@@ -11,20 +9,25 @@ namespace BeaconApp.Pages
 {
     public class MapPage : ContentPage
     {
+        View mapView;
+        Map map;
+
         public MapPage()
         {
-            var map = new Map(
-                MapSpan.FromCenterAndRadius(
-                        new Position(38.946047, -92.330131), Distance.FromMiles(0.3)))
+            map = new Map()
             {
                 IsShowingUser = true,
                 HeightRequest = 100,
                 WidthRequest = 960,
                 VerticalOptions = LayoutOptions.FillAndExpand
             };
-            var stack = new StackLayout { Spacing = 0 };
-            stack.Children.Add(map);
-            Content = stack;
+
+            mapView = map;
+
+            this.Content = new StackLayout
+            {
+                Children = { mapView }
+            };
         }
     }
 }
