@@ -17,6 +17,7 @@ using Android;
 using Android.Support.V4.App;
 using Android.Gms.Common;
 using System.Threading.Tasks;
+using Android.Util;
 
 namespace BeaconApp.Droid
 {
@@ -35,15 +36,8 @@ namespace BeaconApp.Droid
             // check for permissions in Runtime
             var permissionCheck = ContextCompat.CheckSelfPermission(this, Manifest.Permission.AccessFineLocation);
             if (!permissionCheck.Equals(Permission.Granted))
-            {
-                // there is no granted permission to ACCESS_FINE_LOCATION. Requesting it in runtime
                 ActivityCompat.RequestPermissions(this, new string[] { Manifest.Permission.AccessFineLocation }, RequestAccessFineLocation);
-            }
-            else
-            {
-                // the permission was granted in the past
-                InitApp();
-            }
+            else InitApp();
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
@@ -59,12 +53,7 @@ namespace BeaconApp.Droid
                 wasInitialized = true;
                 InitApp();
             }
-            else
-            {
-                // permission denied
-                // close app
-                Finish();
-            }
+            else Finish();
         }
 
         public override bool OnPrepareOptionsMenu(IMenu menu)
@@ -72,16 +61,15 @@ namespace BeaconApp.Droid
             return wasInitialized && base.OnPrepareOptionsMenu(menu);
         }
 
-        private void InitApp()
+        private async void InitApp()
         {
             if (IsGooglePlayServicesInstalled())
             {
-                LoadApplication(new App());
+                Plugin.Geolocator.Abstractions.Position position = await GetLocation();
+                if (position != null) LoadApplication(new App(position));
+                else Finish();
             }
-            else
-            {
-                Toast.MakeText(this, "Google Play Service is not installed", ToastLength.Long).Show();
-            }
+            else Toast.MakeText(this, "Google Play Service is not installed", ToastLength.Long).Show();
         }
 
         private bool IsGooglePlayServicesInstalled()
@@ -89,6 +77,22 @@ namespace BeaconApp.Droid
             var googleApiAvailability = GoogleApiAvailability.Instance;
             var status = googleApiAvailability.IsGooglePlayServicesAvailable(this);
             return status == ConnectionResult.Success;
+        }
+
+        private async Task<Plugin.Geolocator.Abstractions.Position> GetLocation()
+        {
+            try
+            {
+                var locator = CrossGeolocator.Current;
+                locator.DesiredAccuracy = 50;
+
+                return await locator.GetPositionAsync(timeoutMilliseconds: 60000).ConfigureAwait(false);
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("MainActivity", "Unable to get location, may need to increase timeout: " + ex);
+                return null;
+            }
         }
     }
 }

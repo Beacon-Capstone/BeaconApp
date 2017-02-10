@@ -12,9 +12,11 @@ namespace BeaconApp.Pages
         View mapView;
         Map map;
 
-        public MapPage()
+        public MapPage(Plugin.Geolocator.Abstractions.Position position)
         {
-            map = new Map()
+            map = new Map(
+            MapSpan.FromCenterAndRadius(
+                    new Position(position.Latitude, position.Longitude), Distance.FromMiles(0.3)))
             {
                 IsShowingUser = true,
                 HeightRequest = 100,

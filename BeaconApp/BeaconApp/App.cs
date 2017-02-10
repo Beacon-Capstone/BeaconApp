@@ -2,16 +2,16 @@ using BeaconApp.Pages;
 using Plugin.Geolocator;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Maps;
+using Plugin.Geolocator.Abstractions;
 
 namespace BeaconApp
 {
     public class App : Application
     {
-        public App()
+        public App(Position position)
         {
             // The root page of your application
-            MainPage = new MapPage();
+            MainPage = new MapPage(position);
         }
     }
 }
