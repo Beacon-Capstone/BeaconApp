@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BeaconApp.Pages
+namespace BeaconApp.ViewModels
 {
-    class MainPage
+    class UserViewModel
     {
     }
 }

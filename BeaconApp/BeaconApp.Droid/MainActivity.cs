@@ -61,13 +61,11 @@ namespace BeaconApp.Droid
             return wasInitialized && base.OnPrepareOptionsMenu(menu);
         }
 
-        private async void InitApp()
+        private void InitApp()
         {
             if (IsGooglePlayServicesInstalled())
             {
-                Plugin.Geolocator.Abstractions.Position position = await GetLocation();
-                if (position != null) LoadApplication(new App(position));
-                else Finish();
+                LoadApplication(new App());
             }
             else Toast.MakeText(this, "Google Play Service is not installed", ToastLength.Long).Show();
         }
@@ -77,22 +75,6 @@ namespace BeaconApp.Droid
             var googleApiAvailability = GoogleApiAvailability.Instance;
             var status = googleApiAvailability.IsGooglePlayServicesAvailable(this);
             return status == ConnectionResult.Success;
-        }
-
-        private async Task<Plugin.Geolocator.Abstractions.Position> GetLocation()
-        {
-            try
-            {
-                var locator = CrossGeolocator.Current;
-                locator.DesiredAccuracy = 50;
-
-                return await locator.GetPositionAsync(timeoutMilliseconds: 60000).ConfigureAwait(false);
-            }
-            catch (Exception ex)
-            {
-                Log.Debug("MainActivity", "Unable to get location, may need to increase timeout: " + ex);
-                return null;
-            }
         }
     }
 }
