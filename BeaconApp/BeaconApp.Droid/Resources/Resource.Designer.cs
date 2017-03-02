@@ -26,6 +26,10 @@ namespace BeaconApp.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::PCLCrypto.Resource.String.ApplicationName = global::BeaconApp.Droid.Resource.String.ApplicationName;
+			global::PCLCrypto.Resource.String.Hello = global::BeaconApp.Droid.Resource.String.Hello;
+			global::PCLStorage.Resource.String.ApplicationName = global::BeaconApp.Droid.Resource.String.ApplicationName;
+			global::PCLStorage.Resource.String.Hello = global::BeaconApp.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::BeaconApp.Droid.Resource.Attribute.actionBarSize;
 		}
 		
@@ -2458,8 +2462,11 @@ namespace BeaconApp.Droid
 			// aapt resource value: 0x7f0200ca
 			public const int mr_ic_play_light = 2130837706;
 			
+			// aapt resource value: 0x7f0200cc
+			public const int notification_template_icon_bg = 2130837708;
+			
 			// aapt resource value: 0x7f0200cb
-			public const int notification_template_icon_bg = 2130837707;
+			public const int splash = 2130837707;
 			
 			static Drawable()
 			{
@@ -3218,6 +3225,12 @@ namespace BeaconApp.Droid
 		
 		public partial class String
 		{
+			
+			// aapt resource value: 0x7f060046
+			public const int ApplicationName = 2131099718;
+			
+			// aapt resource value: 0x7f060045
+			public const int Hello = 2131099717;
 			
 			// aapt resource value: 0x7f06002e
 			public const int abc_action_bar_home_description = 2131099694;
