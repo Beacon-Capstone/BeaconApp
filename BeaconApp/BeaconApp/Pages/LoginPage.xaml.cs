@@ -30,7 +30,7 @@ namespace BeaconApp.Pages
             }
             else
             {
-                output.Text = "login failed, incorrect username/password";
+                output.Text = "login failed: incorrect username/password";
             }
         }
     }
