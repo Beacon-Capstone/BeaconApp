@@ -21,12 +21,23 @@ namespace BeaconApp.Pages
             InitializeComponent();
             //BindingContext = new LoginPageViewModel();
         }
-        void handleLogin(object sender, EventArgs e)
+        async void handleLogin(object sender, EventArgs e)
         {
             //DisplayAlert("Title", "Hello World", "OK");
             if (usernameInput.Text == "username" && passwordInput.Text == "password")
             {
-                output.Text = "login successful";
+                //output.Text = "login successful";
+                // create a new NavigationPage, with a new AcquaintanceListPage set as the Root
+                var navPage = new NavigationPage(
+                    new MapPage()
+                    {
+                        Title = "Map",
+                    });
+
+                navPage.BarTextColor = Color.White;
+
+                // set the MainPage of the app to the navPage
+                Application.Current.MainPage = navPage;
             }
             else
             {
