@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeaconApp.Pages.LoginPage"
+             Title="LoginPage">
+    <StackLayout>
+        <Label Text="Login"
+               Font="Large"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+               />
+        <Entry x:Name="usernameInput"
+               Placeholder="Username"
+               HorizontalOptions="Center"
+            />
+        <Entry x:Name="passwordInput"
+               Placeholder="Password"
+               IsPassword="True"
+               HorizontalOptions="Center"
+            />
+        <Button x:Name="loginButton"
+                Text="Login"
+                HorizontalOptions="Center"
+                VerticalOptions="CenterAndExpand"
+                Clicked="handleLogin"
+            />
+        <Label x:Name="output"
+               Text="Output"
+               HorizontalOptions="Center"
+               VerticalOptions="CenterAndExpand"
+            />
+    </StackLayout>
+</ContentPage>

@@ -14,7 +14,8 @@ namespace BeaconApp
             {
                 // if this is an Android device, set the MainPage to a new SplashPage
                 Debug.WriteLine("Here 2");
-                MainPage = new SplashPage();
+                //MainPage = new SplashPage();
+                MainPage = new LoginPage();
             } else
             {
                 var navPage = new NavigationPage(
