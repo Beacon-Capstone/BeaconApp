@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeaconApp.Pages.LoginPage"
+             Title="LoginPage">
+    <Grid Padding="20" ColumnSpacing="10" RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0"/>
+        <Label Text="BeaconApp"
+               Font="Large"
+               Grid.Row="1"
+               HorizontalOptions="Center"
+               />
+        <Entry x:Name="usernameInput"
+               Placeholder="Username"
+               Grid.Row="2"
+               HorizontalOptions="Center"
+            />
+        <Entry x:Name="passwordInput"
+               Placeholder="Password"
+               IsPassword="True"
+               Grid.Row="3"
+               HorizontalOptions="Center"
+            />
+        <Button x:Name="loginButton"
+                Text="Login"
+                TextColor="White"
+                BackgroundColor="#1c488e"
+                Clicked="handleLogin"
+                Grid.Row="4"
+                HorizontalOptions="Center"
+            />
+        <Label x:Name="output"
+               Text=""
+               Grid.Row="5"
+               HorizontalOptions="Center"
+            />
+        <Label Text="Don't have an account? | Register"
+               Grid.Row="6"
+               HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="goToRegister"
+                                  NumberOfTapsRequired="1"/>
+            </Label.GestureRecognizers>
+        </Label>
+    </Grid>
+</ContentPage>
