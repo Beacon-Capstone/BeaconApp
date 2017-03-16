@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BeaconApp.Pages.RegisterPage">
+    <StackLayout Padding="60"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center">
+        <Entry x:Name="emailInput"
+               Placeholder="Email Address"/>
+        <Entry x:Name="usernameInput"
+               Placeholder="Username"/>
+        <Entry x:Name="passwordInput"
+               Placeholder="Password"
+               IsPassword="True"/>
+        <Entry x:Name="verifyPasswordInput"
+               Placeholder="Verify Password"
+               IsPassword="True"/>
+        <Button x:Name="registerButton"
+                Clicked="register"
+                Text="Register"
+                TextColor="White"
+                BackgroundColor="#1c488e"/>
+        <Label x:Name="output"/>
+    </StackLayout>
+</ContentPage>
+    
