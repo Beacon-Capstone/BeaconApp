@@ -44,6 +44,12 @@ namespace BeaconApp.Pages
                 output.Text = "login failed: incorrect username/password";
             }
         }
+
+        async void goToRegister(object sender, FocusEventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Clicked go to register link.");
+            Application.Current.MainPage = new NavigationPage(new RegisterPage());
+        }
     }
 
     class LoginPageViewModel : INotifyPropertyChanged

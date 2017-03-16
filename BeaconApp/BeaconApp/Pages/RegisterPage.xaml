@@ -21,6 +21,14 @@
                 TextColor="White"
                 BackgroundColor="#1c488e"/>
         <Label x:Name="output"/>
+        <Label Text="Already have an account? | Login"
+               Grid.Row="6"
+               HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="goToLogin"
+                                  NumberOfTapsRequired="1"/>
+            </Label.GestureRecognizers>
+        </Label>
     </StackLayout>
 </ContentPage>
     

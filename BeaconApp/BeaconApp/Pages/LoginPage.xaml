@@ -45,7 +45,11 @@
             />
         <Label Text="Don't have an account? | Register"
                Grid.Row="6"
-               HorizontalOptions="Center"
-            />
+               HorizontalOptions="Center">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Tapped="goToRegister"
+                                  NumberOfTapsRequired="1"/>
+            </Label.GestureRecognizers>
+        </Label>
     </Grid>
 </ContentPage>

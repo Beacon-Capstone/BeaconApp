@@ -31,5 +31,10 @@ namespace BeaconApp.Pages
                 System.Diagnostics.Debug.WriteLine("Passwords do not match.");
             }
         }
+        void goToLogin(object sender, EventArgs e)
+        {
+            System.Diagnostics.Debug.WriteLine("Clicked go to login link.");
+            Application.Current.MainPage = new NavigationPage(new LoginPage());
+        }
     }
 }
